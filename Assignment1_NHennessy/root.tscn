@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnlma8u0ulu4l"]
+
+[ext_resource type="Script" path="res://particleControl.gd" id="1_qwtbw"]
+[ext_resource type="Texture2D" uid="uid://npqeywt48c5g" path="res://Sprites/snow.png" id="1_rgq6l"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_660pj"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yu11h"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 20, 20)
+angle_max = 180.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 30, 0)
+spread = 10.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.65
+scale_max = 0.85
+color = Color(0.793351, 0.960203, 1, 1)
+hue_variation_min = -0.07
+anim_offset_max = 1.0
+
+[node name="root" type="Node2D"]
+script = ExtResource("1_qwtbw")
+
+[node name="snowparticles" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_660pj")
+position = Vector2(569, 0)
+amount = 10000
+process_material = SubResource("ParticleProcessMaterial_yu11h")
+texture = ExtResource("1_rgq6l")
+lifetime = 45.0
+preprocess = 30.0
+
+[node name="bg" type="Polygon2D" parent="."]
+z_index = -1
+scale = Vector2(45.9099, 28.9489)
+color = Color(0.366045, 0.853835, 0.85991, 1)
+polygon = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
